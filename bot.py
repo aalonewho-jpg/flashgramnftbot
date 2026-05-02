@@ -20,7 +20,7 @@ from database import (
     update_last_free_case, get_last_free_case, add_withdrawal,
     get_promocode, use_promocode, add_promocode,
     add_shop_order, get_shop_order, update_shop_order_price, update_shop_order_link, update_shop_order_status,
-    delete_inventory_item_by_id
+    delete_inventory_item_by_id, is_reward_claimed, claim_reward
 )
 from states import RegisterStates, SettingsStates, PromocodeStates, ShopStates, CasinoStates
 from keyboards import (
