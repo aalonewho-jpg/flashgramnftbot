@@ -271,3 +271,10 @@ def update_shop_order_status(order_id, status):
     c.execute("UPDATE shop_orders SET status = ? WHERE id = ?", (status, order_id))
     conn.commit()
     conn.close()
+
+def delete_inventory_item_by_id(item_id):
+    conn = sqlite3.connect(DB_PATH)
+    c = conn.cursor()
+    c.execute("DELETE FROM inventory WHERE id = ?", (item_id,))
+    conn.commit()
+    conn.close()
