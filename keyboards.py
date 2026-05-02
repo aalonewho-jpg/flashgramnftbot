@@ -23,6 +23,7 @@ def main_menu():
 def subscribe_button():
     return InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="ПОДПИСАТЬСЯ", url="https://t.me/alonewho666")],
+        [InlineKeyboardButton(text="ПОДПИСАТЬСЯ 2", url="https://t.me/flashgram_info")],
         [InlineKeyboardButton(text="Я подписался", callback_data="check_subscribe")]
     ])
 
