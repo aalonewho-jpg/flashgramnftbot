@@ -240,28 +240,26 @@ async def back_to_main_menu(callback: CallbackQuery):
 
 @dp.callback_query(F.data == "donate")
 async def donate_handler(callback: CallbackQuery):
-    text = f"""<b><tg-emoji emoji-id='5312361253610475399'>💝</tg-emoji> Донат, единственная вещь которая поддержит разработчика бота, а то он сильно уж устал ввхвхвх)
-
-<tg-emoji emoji-id='5197288647275071607'>•</tg-emoji> Как проходит донат?
-• Вы выбираете сколько звезд вы хотите в боте;
-• Выбираете способ оплаты;
-• Списываетесь со мной по поводу покупки.
-
-<tg-emoji emoji-id='5429263077927300012'>💎</tg-emoji> Оплата звездами в Telegram
-<tg-emoji emoji-id='5305699699204837855'>⭐️</tg-emoji> 200 Stars = 15 Звёзд
-450 Stars = 25 Звёзд
-700 Stars = 50 Звёзд
-1500 Stars = 75 Звёзд
-3000 Stars = 100 Звёзд
-
-<tg-emoji emoji-id='5427225953463972959'>🌟</tg-emoji> Оплата звездами в Flashgram
-200 Stars = 1000 Звёзд
-450 Stars = 3200 Звёзд
-700 Stars = 7000 Звёзд
-1500 Stars = 13000 Звёзд
-3000 Stars = 20000 Звёзд
-
-<tg-emoji emoji-id='5363992034728229166'>📞</tg-emoji> Списаться с создателем по поводу покупки @enclox</b>"""
+    text = (
+        "<b><tg-emoji emoji-id='5312361253610475399'>💝</tg-emoji> Донат, единственная вещь которая поддержит разработчика бота, а то он сильно уж устал ввхввхвх)\n\n"
+        "<tg-emoji emoji-id='5197288647275071607'>•</tg-emoji> Как проходит донат?\n"
+        "• Вы выбираете сколько звезд вы хотите в боте;\n"
+        "• Выбираете способ оплаты;\n"
+        "• Списываетесь со мной по поводу покупки.\n\n"
+        "<tg-emoji emoji-id='5429263077927300012'>💎</tg-emoji> Оплата звездами в Telegram\n"
+        "<tg-emoji emoji-id='5305699699204837855'>⭐️</tg-emoji> 200 Stars = 15 Звёзд\n"
+        "<tg-emoji emoji-id='5305699699204837855'>⭐️</tg-emoji>450 Stars = 25 Звёзд\n"
+        "<tg-emoji emoji-id='5305699699204837855'>⭐️</tg-emoji>700 Stars = 50 Звёзд\n"
+        "<tg-emoji emoji-id='5305699699204837855'>⭐️</tg-emoji>1500 Stars = 75 Звёзд\n"
+        "<tg-emoji emoji-id='5305699699204837855'>⭐️</tg-emoji>3000 Stars = 100 Звёзд\n\n"
+        "<tg-emoji emoji-id='5427225953463972959'>🌟</tg-emoji> Оплата звездами в Flashgram\n"
+        "<tg-emoji emoji-id='5305699699204837855'>⭐️</tg-emoji>200 Stars = 1000 Звёзд\n"
+        "<tg-emoji emoji-id='5305699699204837855'>⭐️</tg-emoji>450 Stars = 3200 Звёзд\n"
+        "<tg-emoji emoji-id='5305699699204837855'>⭐️</tg-emoji>700 Stars = 7000 Звёзд\n"
+        "<tg-emoji emoji-id='5305699699204837855'>⭐️</tg-emoji>1500 Stars = 13000 Звёзд\n"
+        "<tg-emoji emoji-id='5305699699204837855'>⭐️</tg-emoji>3000 Stars = 20000 Звёзд\n\n"
+        "<tg-emoji emoji-id='5363992034728229166'>📞</tg-emoji> Списаться с создателем по поводу покупки @enclox</b>"
+    )
     
     await callback.message.edit_text(
         text,
