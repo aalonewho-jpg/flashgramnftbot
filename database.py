@@ -63,6 +63,13 @@ def init_db():
         created_date TIMESTAMP
     )''')
     
+    # НОВАЯ ТАБЛИЦА ДЛЯ КОГДА ВЫДАНЫ НАГРАДЫ ЗА РЕФЕРАЛОВ
+    c.execute('''CREATE TABLE IF NOT EXISTS referral_rewards (
+        user_id INTEGER,
+        level INTEGER,
+        PRIMARY KEY (user_id, level)
+    )''')
+    
     conn.commit()
     conn.close()
 
@@ -276,5 +283,21 @@ def delete_inventory_item_by_id(item_id):
     conn = sqlite3.connect(DB_PATH)
     c = conn.cursor()
     c.execute("DELETE FROM inventory WHERE id = ?", (item_id,))
+    conn.commit()
+    conn.close()
+
+# НОВЫЕ ФУНКЦИИ ДЛЯ РЕФЕРАЛЬНЫХ НАГРАД
+def is_reward_claimed(user_id, level):
+    conn = sqlite3.connect(DB_PATH)
+    c = conn.cursor()
+    c.execute("SELECT 1 FROM referral_rewards WHERE user_id = ? AND level = ?", (user_id, level))
+    result = c.fetchone()
+    conn.close()
+    return result is not None
+
+def claim_reward(user_id, level):
+    conn = sqlite3.connect(DB_PATH)
+    c = conn.cursor()
+    c.execute("INSERT INTO referral_rewards (user_id, level) VALUES (?, ?)", (user_id, level))
     conn.commit()
     conn.close()
