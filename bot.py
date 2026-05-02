@@ -41,6 +41,7 @@ REQUIRED_CHANNEL_2 = "@flashgram_info"
 
 # Глобальные переменные для управления магазином
 shop_open = True
+free_case_processing = {}
 
 # ============ ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ============
 
