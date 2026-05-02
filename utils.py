@@ -118,7 +118,7 @@ NFT_SELL_PRICES = {
     "Ginger Cookie": 25, "Jolly Chimp": 30, "Jelly Bunny": 20, "Spiced Wine": 35, "Evil Eye": 35,
     "Spy Agaric": 35, "Winter Wreath": 30, "Star Notepad": 25, "Witch Hat": 25, "Hypno Lollipop": 20,
     "Santa Hat": 20, "Sakura Flower": 25, "Hanging Star": 20, "Eternal Candle": 20, "Top Hat": 25,
-    "Crystal Ball": 20, "Record Player": 25 "Toy Bear": 15, "Swiss Watch": 40, "Vintage Cigar": 35,
+    "Crystal Ball": 20, "Record Player": 25, "Toy Bear": 15, "Swiss Watch": 40, "Vintage Cigar": 35,
     "Rare Bird": 30, "Flying Broom": 25, "Low Rider": 40, "Voodoo Doll": 20, "Mad Pumpkin": 35,
     "Skull Flower": 45, "Astral Shard": 50, "Signet Ring": 50, "Sharp Tongue": 45, "Bonded Ring": 45,
     "Gem Signet": 50, "Scared Cat": 40, "Electric Skull": 45, "Kissed Frog": 40, "Nail Bracelet": 40,
