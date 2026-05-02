@@ -39,8 +39,13 @@ REQUIRED_CHANNEL = "@alonewho666"
 
 async def is_subscribed(user_id: int) -> bool:
     try:
-        member = await bot.get_chat_member(REQUIRED_CHANNEL, user_id)
-        return member.status in ["member", "administrator", "creator"]
+        # Проверяем первый канал
+        member1 = await bot.get_chat_member("@alonewho666", user_id)
+        # Проверяем второй канал
+        member2 = await bot.get_chat_member("@flashgram_info", user_id)
+        
+        return member1.status in ["member", "administrator", "creator"] and \
+               member2.status in ["member", "administrator", "creator"]
     except:
         return False
 
