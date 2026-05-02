@@ -16,14 +16,15 @@ def main_menu():
             InlineKeyboardButton(text="Азарт", callback_data="casino")
         ],
         [
+            InlineKeyboardButton(text="Донат", callback_data="donate"),
             InlineKeyboardButton(text="Настройки", callback_data="settings")
         ]
     ])
 
 def subscribe_button():
     return InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="ПОДПИСАТЬСЯ", url="https://t.me/alonewho666")],
-        [InlineKeyboardButton(text="ПОДПИСАТЬСЯ 2", url="https://t.me/flashgram_info")],
+        [InlineKeyboardButton(text="ПОДПИСАТЬСЯ НА КАНАЛ 1", url="https://t.me/alonewho666")],
+        [InlineKeyboardButton(text="ПОДПИСАТЬСЯ НА КАНАЛ 2", url="https://t.me/flashgram_info")],
         [InlineKeyboardButton(text="Я подписался", callback_data="check_subscribe")]
     ])
 
@@ -43,6 +44,23 @@ def rating_back():
         [InlineKeyboardButton(text="Назад", callback_data="referrals")]
     ])
 
+# ========== НОВАЯ КЛАВИАТУРА ДЛЯ NFT В ИНВЕНТАРЕ ==========
+def nft_action_menu(nft_name):
+    return InlineKeyboardMarkup(inline_keyboard=[
+        [InlineKeyboardButton(text="💰 Вывести", callback_data=f"withdraw_{nft_name}")],
+        [InlineKeyboardButton(text="🏷️ Продать", callback_data=f"sell_{nft_name}")],
+        [InlineKeyboardButton(text="◀️ Назад", callback_data="inventory")]
+    ])
+
+def confirm_sell(nft_name, price):
+    return InlineKeyboardMarkup(inline_keyboard=[
+        [
+            InlineKeyboardButton(text="✅ Да, продать", callback_data=f"confirm_sell_{nft_name}"),
+            InlineKeyboardButton(text="❌ Нет", callback_data="inventory")
+        ]
+    ])
+
+# ========== ОСТАЛЬНЫЕ КЛАВИАТУРЫ ==========
 def get_paginated_inventory(items, page, items_per_page=6):
     total_pages = (len(items) + items_per_page - 1) // items_per_page if items else 1
     start = page * items_per_page
@@ -54,7 +72,8 @@ def get_paginated_inventory(items, page, items_per_page=6):
         if "Кейс" in item:
             keyboard.append([InlineKeyboardButton(text=f"📦 {item}", callback_data=f"open_case_{item}")])
         else:
-            keyboard.append([InlineKeyboardButton(text=f"🎁 {item}", callback_data=f"withdraw_{item}")])
+            # Для обычных NFT показываем новую кнопку действий
+            keyboard.append([InlineKeyboardButton(text=f"🎁 {item}", callback_data=f"view_nft_{item}")])
     
     nav_row = []
     if page > 0:
@@ -81,12 +100,8 @@ def get_paginated_cases(page, cases_per_page=4):
         "Черный", "PEPE", "Мифическая слава", "alone"
     ]
     
-    prices = {
-        "Фелириум": 100, "Запах": 150, "Богач": 500, "Свадьба": 1300,
-        "Шахта": 3000, "Все или ничего": 5000, "Небо": 7500,
-        "Сердечный приступ": 10000, "Время": 10500, "Черный": 20000,
-        "PEPE": 27000, "Мифическая слава": 30000, "alone": 50000
-    }
+    from utils import CASES_DATA
+    prices = {case: CASES_DATA[case]["price"] for case in all_cases}
     
     total_pages = (len(all_cases) + cases_per_page - 1) // cases_per_page
     start = page * cases_per_page
@@ -235,3 +250,9 @@ def dice_game_menu(has_bet=False):
             [InlineKeyboardButton(text="Сделать ставку", callback_data="dice_bet")],
             [InlineKeyboardButton(text="На главную", callback_data="main_menu")]
         ])
+
+# Донат меню
+def donate_menu():
+    return InlineKeyboardMarkup(inline_keyboard=[
+        [InlineKeyboardButton(text="На главную", callback_data="main_menu")]
+    ])
