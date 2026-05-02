@@ -58,6 +58,7 @@ async def is_subscribed(user_id: int) -> bool:
 async def check_referral_levels(user_id):
     ref_count = get_referral_count(user_id)
     
+    # Новые уровни и награды
     level_rewards = {
         2: ["50 Stars"],
         5: ["80 Stars"],
@@ -72,15 +73,24 @@ async def check_referral_levels(user_id):
     }
     
     for level, rewards in level_rewards.items():
-        if ref_count >= level:
+        if ref_count >= level and not is_reward_claimed(user_id, level):
+            claim_reward(user_id, level)
             for reward in rewards:
                 if "Stars" in reward:
                     stars_count = int(re.search(r'\d+', reward).group())
                     add_stars(user_id, stars_count)
-                    await bot.send_message(user_id, f"<b>🎉 За достижение уровня {level} (рефералов: {ref_count}) вы получили {reward}!</b>", parse_mode="HTML")
+                    await bot.send_message(
+                        user_id, 
+                        f"<b><tg-emoji emoji-id='5427225953463972959'>✅</tg-emoji>За достижение уровня {level} ({ref_count} рефералов) вы получили {reward}!</b>", 
+                        parse_mode="HTML"
+                    )
                 else:
                     add_to_inventory(user_id, reward)
-                    await bot.send_message(user_id, f"<b>🎉 За достижение уровня {level} (рефералов: {ref_count}) вы получили {reward}!</b>", parse_mode="HTML")
+                    await bot.send_message(
+                        user_id, 
+                        f"<b><tg-emoji emoji-id='5427225953463972959'>✅</tg-emoji>За достижение уровня {level} ({ref_count} рефералов) вы получили {reward}!</b>", 
+                        parse_mode="HTML"
+                    )
 
 # Админ команда для рассылки
 @dp.message(Command("news"))
