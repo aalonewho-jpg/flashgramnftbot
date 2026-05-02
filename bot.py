@@ -275,16 +275,28 @@ async def donate_handler(callback: CallbackQuery):
 @dp.callback_query(F.data == "free_case")
 async def free_case(callback: CallbackQuery):
     user_id = callback.from_user.id
-    last_case = get_last_free_case(user_id)
+    
+    # Проверяем когда был последний раз открыт кейс
+    conn = sqlite3.connect("flashgram.db")
+    c = conn.cursor()
+    c.execute("SELECT last_free_case FROM users WHERE user_id = ?", (user_id,))
+    result = c.fetchone()
+    conn.close()
+    
+    last_case = result[0] if result and result[0] else None
     
     if last_case:
-        time_diff = datetime.now() - last_case
+        last_date = datetime.fromisoformat(last_case)
+        time_diff = datetime.now() - last_date
         if time_diff < timedelta(hours=24):
             hours_left = 24 - time_diff.total_seconds() / 3600
             minutes_left = int((hours_left % 1) * 60)
             hours_left = int(hours_left)
-            await callback.answer(f"Для следующего открытия подождите {hours_left} часов {minutes_left} минут!", show_alert=True)
+            await callback.answer(f"⏰ Для следующего открытия подождите {hours_left} часов {minutes_left} минут!", show_alert=True)
             return
+    
+    # Блокируем кнопку сразу, чтобы нельзя было нажать несколько раз
+    await callback.message.edit_reply_markup(reply_markup=None)
     
     all_slots = ["25 Stars", "30 Stars", "50 Stars", "Lol Pop", "Candy Cane"]
     
@@ -297,7 +309,13 @@ async def free_case(callback: CallbackQuery):
         await asyncio.sleep(0.5)
     
     reward = get_random_reward(FREE_CASE_REWARDS)
-    update_last_free_case(user_id)
+    
+    # Обновляем время последнего открытия
+    conn = sqlite3.connect("flashgram.db")
+    c = conn.cursor()
+    c.execute("UPDATE users SET last_free_case = ? WHERE user_id = ?", (datetime.now(), user_id))
+    conn.commit()
+    conn.close()
     
     if "Stars" in reward:
         stars_count = int(re.search(r'\d+', reward).group())
