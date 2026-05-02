@@ -527,8 +527,42 @@ async def withdraw_item(callback: CallbackQuery):
 
 @dp.callback_query(F.data.startswith("admin_withdraw_"))
 async def admin_withdraw(callback: CallbackQuery):
+    # Получаем ID заявки из callback_data (если есть)
+    parts = callback.data.split("_")
+    withdrawal_id = parts[2] if len(parts) > 2 else 1
+    
+    # Получаем информацию о выводе из сообщения в теме
+    message_text = callback.message.text
+    
+    # Парсим сообщение чтобы получить имя пользователя и предмет
+    # Пример сообщения: "Выводит: @username\nTelegram ID: 12345\n...\nЧто выводит: Jelly Bunny"
+    lines = message_text.split("\n")
+    username = None
+    user_id = None
+    item_name = None
+    
+    for line in lines:
+        if line.startswith("Выводит: @"):
+            username = line.replace("Выводит: @", "").strip()
+        elif line.startswith("Telegram ID:"):
+            user_id = int(line.replace("Telegram ID:", "").strip())
+        elif line.startswith("Что выводит:"):
+            item_name = line.replace("Что выводит:", "").strip()
+    
+    if user_id and item_name:
+        try:
+            await bot.send_message(
+                user_id,
+                f"<b><tg-emoji emoji-id='5197288647275071607'>✅</tg-emoji> Ваш NFT «{item_name}» был выведен вам на аккаунт в Flashgram!\n\n"
+                f"<tg-emoji emoji-id='5429263077927300012'>👤</tg-emoji> Проверьте свой профиль, подарок уже должен быть у вас.\n\n"
+                f"<tg-emoji emoji-id='5262736024651452318'>🎮</tg-emoji> Спасибо, что пользуетесь ботом!</b>",
+                parse_mode="HTML"
+            )
+        except Exception as e:
+            print(f"Ошибка отправки уведомления пользователю: {e}")
+    
     await callback.message.edit_text(
-        callback.message.text + "\n\n✅ Выведено администратором!",
+        callback.message.text + "\n\n✅ Выведено администратором! Пользователь уведомлен.",
         reply_markup=None
     )
     await callback.answer("Готово!")
