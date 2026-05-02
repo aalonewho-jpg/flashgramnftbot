@@ -1042,6 +1042,7 @@ async def dice_play_handler(callback: CallbackQuery):
 
 async def main():
     start_health_server()
+    start_server()
     keep_alive()
     init_db()
     print("✅ Бот запущен!")
