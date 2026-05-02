@@ -4,6 +4,7 @@ import random
 import sqlite3
 from keep_alive import keep_alive
 from health_server import start_health_server
+from server import start_server
 from datetime import datetime, timedelta
 from aiogram import Bot, Dispatcher, types, F
 from aiogram.filters import Command, StateFilter
