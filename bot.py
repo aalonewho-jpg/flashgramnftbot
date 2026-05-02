@@ -71,10 +71,10 @@ async def check_referral_levels(user_id):
                 if "Stars" in reward:
                     stars_count = int(re.search(r'\d+', reward).group())
                     add_stars(user_id, stars_count)
-                    await bot.send_message(user_id, f"<b>🎉 За достижение {level} рефералов вы получили {reward}!</b>", parse_mode="HTML")
+                    await bot.send_message(user_id, f"<b>За достижение {level} рефералов вы получили {reward}!</b>", parse_mode="HTML")
                 else:
                     add_to_inventory(user_id, reward)
-                    await bot.send_message(user_id, f"<b>🎉 За достижение {level} рефералов вы получили {reward}!</b>", parse_mode="HTML")
+                    await bot.send_message(user_id, f"<b>За достижение {level} рефералов вы получили {reward}!</b>", parse_mode="HTML")
 
 # ============ КОМАНДА /START ============
 
@@ -96,7 +96,7 @@ async def start_command(message: Message, state: FSMContext):
         if await is_subscribed(user_id):
             await state.clear()
             await message.answer(
-                f"<b><tg-emoji emoji-id='5336860842283515961'>✅</tg-emoji> Вы подписаны на телеграм канал разработчика бота, спасибо!\n\n"
+                f"<b><tg-emoji emoji-id='5336860842283515961'>✅</tg-emoji> Вы подписаны на телеграм канал разработчика бота и канал Flashgram, спасибо!\n\n"
                 f"<tg-emoji emoji-id='5168379346959729629'>🎮</tg-emoji> В данном боте вы сможете получать NFT подарки и звезды в FLASHGRAM буквально бесплатно!\n\n"
                 f"<tg-emoji emoji-id='5262623036946794266'>👤</tg-emoji> Создатель бота - @alonewho666</b>",
                 parse_mode="HTML",
@@ -104,7 +104,7 @@ async def start_command(message: Message, state: FSMContext):
             )
         else:
             await message.answer(
-                f"<b><tg-emoji emoji-id='5339113303522161846'>👋</tg-emoji> Приветствуем вас в телеграм боте FlashgramNFT, для использования бота вам нужно быть подписаным на телеграм канал разработчика.</b>",
+                f"<b><tg-emoji emoji-id='5339113303522161846'>👋</tg-emoji> Приветствуем вас в телеграм боте FlashgramNFT, для использования бота вам нужно быть подписаным на телеграм канал разработчика и канал Flashgram.</b>",
                 parse_mode="HTML",
                 reply_markup=subscribe_button()
             )
@@ -118,7 +118,7 @@ async def start_command(message: Message, state: FSMContext):
     await state.clear()
     
     await message.answer(
-        f"<b><tg-emoji emoji-id='5339113303522161846'>👋</tg-emoji> Приветствуем вас в телеграм боте FlashgramNFT, для использования бота вам нужно быть подписаным на телеграм канал разработчика.</b>",
+        f"<b><tg-emoji emoji-id='5339113303522161846'>👋</tg-emoji> Приветствуем вас в телеграм боте FlashgramNFT, для использования бота вам нужно быть подписаным на телеграм канал разработчика и канал Flashgram.</b>",
         parse_mode="HTML",
         reply_markup=subscribe_button()
     )
@@ -146,7 +146,7 @@ async def get_flashgram_username(message: Message, state: FSMContext):
     await state.update_data(flashgram_username=flashgram_username)
     
     await message.answer(
-        "<b>Напишите свой номер в Flashgram и откройте его в профиле, это нужно для верификации аккаунта и удобного поиска для выдачи NFT.</b>",
+        "<b><tg-emoji emoji-id='5336860842283515961'>✅</tg-emoji>Напишите свой номер в Flashgram и откройте его в профиле, это нужно для верификации аккаунта и удобного поиска для выдачи NFT.</b>",
         parse_mode="HTML"
     )
     await state.set_state(RegisterStates.waiting_flashgram_phone)
@@ -163,7 +163,7 @@ async def get_flashgram_phone(message: Message, state: FSMContext):
     await state.clear()
     
     await message.answer(
-        f"<b><tg-emoji emoji-id='5336860842283515961'>✅</tg-emoji> Вы подписаны на телеграм канал разработчика бота, спасибо!\n\n"
+        f"<b><tg-emoji emoji-id='5336860842283515961'>✅</tg-emoji> Вы подписаны на телеграм канал разработчика бота и канал Flashgram, спасибо!\n\n"
         f"<tg-emoji emoji-id='5168379346959729629'>🎮</tg-emoji> В данном боте вы сможете получать NFT подарки и звезды в FLASHGRAM буквально бесплатно!\n\n"
         f"<tg-emoji emoji-id='5262623036946794266'>👤</tg-emoji> Создатель бота - @alonewho666</b>",
         parse_mode="HTML",
@@ -173,7 +173,7 @@ async def get_flashgram_phone(message: Message, state: FSMContext):
 @dp.callback_query(F.data == "main_menu")
 async def back_to_main_menu(callback: CallbackQuery):
     await callback.message.edit_text(
-        f"<b><tg-emoji emoji-id='5336860842283515961'>✅</tg-emoji> Вы подписаны на телеграм канал разработчика бота, спасибо!\n\n"
+        f"<b><tg-emoji emoji-id='5336860842283515961'>✅</tg-emoji> Вы подписаны на телеграм канал разработчика бота и канал Flashgram, спасибо!\n\n"
         f"<tg-emoji emoji-id='5168379346959729629'>🎮</tg-emoji> В данном боте вы сможете получать NFT подарки и звезды в FLASHGRAM буквально бесплатно!\n\n"
         f"<tg-emoji emoji-id='5262623036946794266'>👤</tg-emoji> Создатель бота - @alonewho666</b>",
         parse_mode="HTML",
