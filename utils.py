@@ -110,20 +110,20 @@ CASES_DATA = {
 
 # ========== ЦЕНЫ НА ПРОДАЖУ NFT (ВСЕ ЧТО ЕСТЬ В МАГАЗИНЕ) ==========
 NFT_SELL_PRICES = {
-    "Valentine Box": 30, "Cupid Charm": 30, "Love Potion": 30, "Love Candle": 30, "Cookie Heart": 30,
-    "Trapped Heart": 40, "Snoop Dogg": 50, "Ice Cream": 25, "Happy Brownie": 35, "Lol Pop": 30,
-    "Desk Calendar": 20, "Candy Cane": 25, "Xmas Stocking": 30, "Fresh Socks": 20, "Clover Pin": 25,
-    "Swag Bag": 40, "Snake Box": 45, "Lunar Snake": 50, "B-Day Candle": 20, "Pet Snake": 40,
-    "Pretty Posy": 35, "Snoop Cigar": 55, "Jester Hat": 30, "Stellar Rocket": 50, "Input Key": 45,
-    "Ginger Cookie": 25, "Jolly Chimp": 60, "Jelly Bunny": 40, "Spiced Wine": 35, "Evil Eye": 45,
-    "Spy Agaric": 30, "Winter Wreath": 30, "Star Notepad": 25, "Witch Hat": 35, "Hypno Lollipop": 40,
-    "Santa Hat": 30, "Sakura Flower": 35, "Hanging Star": 30, "Eternal Candle": 40, "Top Hat": 45,
-    "Crystal Ball": 50, "Record Player": 40, "Toy Bear": 35, "Swiss Watch": 60, "Vintage Cigar": 65,
-    "Rare Bird": 70, "Flying Broom": 55, "Low Rider": 60, "Voodoo Doll": 50, "Mad Pumpkin": 45,
-    "Skull Flower": 55, "Astral Shard": 80, "Signet Ring": 50, "Sharp Tongue": 45, "Bonded Ring": 55,
-    "Gem Signet": 70, "Scared Cat": 60, "Electric Skull": 75, "Kissed Frog": 50, "Nail Bracelet": 40,
-    "Loot Bag": 90, "Artisan Brick": 70, "Perfume Bottle": 65, "Durov's Cap": 100, "Ion Gem": 80,
-    "Magic Potion": 85, "Mini Oscar": 90, "Mighty Arm": 95, "Heroic Halmet": 120, "Heart Locket": 80, "Plush Pepe": 150
+    "Valentine Box": 15, "Cupid Charm": 15, "Love Potion": 20, "Love Candle": 15, "Cookie Heart": 15,
+    "Trapped Heart": 30, "Snoop Dogg": 20, "Ice Cream": 15, "Happy Brownie": 20, "Lol Pop": 15,
+    "Desk Calendar": 15, "Candy Cane": 15, "Xmas Stocking": 20, "Fresh Socks": 20, "Clover Pin": 25,
+    "Swag Bag": 20, "Snake Box": 15, "Lunar Snake": 15, "B-Day Candle": 20, "Pet Snake": 15,
+    "Pretty Posy": 15, "Snoop Cigar": 35, "Jester Hat": 20, "Stellar Rocket": 25, "Input Key": 25,
+    "Ginger Cookie": 25, "Jolly Chimp": 30, "Jelly Bunny": 20, "Spiced Wine": 35, "Evil Eye": 35,
+    "Spy Agaric": 35, "Winter Wreath": 30, "Star Notepad": 25, "Witch Hat": 25, "Hypno Lollipop": 20,
+    "Santa Hat": 20, "Sakura Flower": 25, "Hanging Star": 20, "Eternal Candle": 20, "Top Hat": 25,
+    "Crystal Ball": 20, "Record Player": 25 "Toy Bear": 15, "Swiss Watch": 40, "Vintage Cigar": 35,
+    "Rare Bird": 30, "Flying Broom": 25, "Low Rider": 40, "Voodoo Doll": 20, "Mad Pumpkin": 35,
+    "Skull Flower": 45, "Astral Shard": 50, "Signet Ring": 50, "Sharp Tongue": 45, "Bonded Ring": 45,
+    "Gem Signet": 50, "Scared Cat": 40, "Electric Skull": 45, "Kissed Frog": 40, "Nail Bracelet": 40,
+    "Loot Bag": 50, "Artisan Brick": 70, "Perfume Bottle": 55, "Durov's Cap": 60, "Ion Gem": 50,
+    "Magic Potion": 55, "Mini Oscar": 60, "Mighty Arm": 65, "Heroic Halmet": 60, "Heart Locket": 70, "Plush Pepe": 100
 }
 
 def get_random_reward(rewards_dict):
