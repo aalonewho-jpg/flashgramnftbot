@@ -1,20 +1,23 @@
-from flask import Flask
-from threading import Thread
+import os
+from http.server import HTTPServer, BaseHTTPRequestHandler
+import threading
 
-app = Flask(__name__)
+class HealthHandler(BaseHTTPRequestHandler):
+    def do_GET(self):
+        self.send_response(200)
+        self.end_headers()
+        self.wfile.write(b"OK")
+    
+    def log_message(self, format, *args):
+        pass
 
-@app.route('/')
-def home():
-    return "OK", 200
-
-@app.route('/health')
-def health():
-    return "OK", 200
-
-def run():
-    app.run(host='0.0.0.0', port=8080)
+def run_health_server():
+    port = int(os.environ.get("PORT", 10000))
+    server = HTTPServer(("0.0.0.0", port), HealthHandler)
+    print(f"[HEALTH] Health check server running on port {port}")
+    server.serve_forever()
 
 def start_health_server():
-    t = Thread(target=run)
-    t.daemon = True
-    t.start()
+    health_thread = threading.Thread(target=run_health_server, daemon=True)
+    health_thread.start()
+    print("[HEALTH] Health check server thread started")
